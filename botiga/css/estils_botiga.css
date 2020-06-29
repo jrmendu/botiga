@@ -1,0 +1,53 @@
+p, h2, h5 {
+    text-align: center;
+}
+
+.banner {
+    background-image: url("../img/horta2.jpg");
+    background-repeat: no-repeat; 
+    background-position: center; /*fa que la foto sempre quedi centrada */ 
+    background-size: cover; /* el cover agafa la totalitat de la pantalla en horitzontal */ 
+}
+
+.footer {
+height: 50px;
+margin-top: 20px;
+text-align: center;
+line-height: 50px;
+}
+
+.bg-light {
+background-color: rgb(228, 211, 211)!important;
+}
+
+.total {
+    color: brown;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.preu {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.red{
+    border-color: red;
+}
+
+.container1 {
+    width: 100%;
+    padding-right: 50px;
+    padding-right: 500px;
+    margin-top: 15px;
+    margin-right: auto;
+  }
+
+.btn{
+    transition: none;
+    border: 0x solid transparent;
+}
+
+.capitalize{
+    text-transform: capitalize;
+}
