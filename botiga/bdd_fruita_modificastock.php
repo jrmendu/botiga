@@ -1,6 +1,7 @@
 <?php
 session_start();
 // la $m ens indica d'on ve la modificació: si d'una comanda o del superusuari
+$usuari=$_SESSION["username"];
 $m=$_GET["m"];
 // recollim les variables del formulari 'bdd_modificarstock_fruita.php' (superusuari)
 if($m==1){
@@ -55,6 +56,10 @@ if($m==1){
         foreach($_SESSION['cistella'] as $key => $producto){
             $nom=$producto['producto'];
             $stock=-$producto['quantitat'];
+            $venta = $producto["quantitat"];
+            $avui = getdate();
+            $data= $avui['year']."-".$avui["mon"]."-".$avui["mday"];
+            $time= $avui['hours'].":".$avui['minutes'].":".$avui['seconds'];
 
             // conectem a la base de dades
             $conector=new mysqli ('localhost', 'root', '', 'botiga');
@@ -72,10 +77,14 @@ if($m==1){
                 $registre=$resultats->fetch_assoc();
                 $bandera = True;
                 $stock_nou=0;
+                $preu_venta=0;
+                $preu_total=0;
                 while($registre and $bandera){
                     if($registre["nom"]==$nom){
                         $bandera= False;
                         $stock_nou=$registre["stock"]+$stock;
+                        $preu_venta=$registre["preu"];
+                        $preu_total=$preu_venta*$venta;
                     }
                     $registre=$resultats->fetch_assoc();
                 } 
@@ -86,7 +95,13 @@ if($m==1){
         
             // modifica
             $resultats=$conector->query($sql);
+
+            $sql="INSERT INTO `ventes` (`id`, `nom`, `venta`, `preuventa`, `preutotal`, `usuari`, `dia`, `hora`) 
+            VALUES (NULL, '$nom', '$venta', '$preu_venta', '$preu_total', '$usuari', '$data', '$time')";
+
+            $resultats=$conector->query($sql);
         }
+
         if ($resultats){
             unset($_SESSION['cistella']);
             header('location:main.php?m=4');

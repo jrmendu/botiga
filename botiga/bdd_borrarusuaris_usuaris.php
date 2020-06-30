@@ -57,6 +57,9 @@
                     <a class="nav-link" href="bdd_usuaris_mostrataula.php">Taula Usuaris</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="bdd_ventes_mostrataula.php">Ventes</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="session_destroy.php">Tanca</a>
                 </li>
             </ul>

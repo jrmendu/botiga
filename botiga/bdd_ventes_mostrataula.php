@@ -54,6 +54,9 @@
                     <a class="nav-link" href="bdd_fruita_mostrataula.php">Taula Fruita</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="bdd_usuaris_mostrataula.php">Taula Usuaris</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="bdd_ventes_mostrataula.php">Ventes</a>
                 </li>
                 <li class="nav-item">
@@ -75,26 +78,31 @@
                         echo "error al conectar a la base de dades: ".$conector->connect_error;
                     } 
 
-                    $sql="SELECT * FROM `usuaris`";
+                    $sql="SELECT * FROM `ventes`";
                     $resultats=$conector->query($sql);
                     echo "<table class='table'>";
                     echo "<thead>";                  
                     echo "<tr>";   
                     echo "<th scope='col'> Nom </th>"; 
-                    echo "<th scope='col'> Cognom </th>"; 
-                    echo "<th scope='col'> Email </th>";  
-                    echo "<th scope='col'> Passw </th>"; 
-                    echo "<th scope='col'> Telefon </th>"; 
-                    echo "<th scope='col'> Poblacio </th>"; 
+                    echo "<th scope='col'> Venta kg </th>"; 
+                    echo "<th scope='col'> Preu kg </th>";  
+                    echo "<th scope='col'> Total </th>"; 
+                    echo "<th scope='col'> Usuari </th>"; 
+                    echo "<th scope='col'> Dia </th>"; 
+                    echo "<th scope='col'> Hora </th>";
                     echo "</tr>"; 
                     echo "</thead>";
                     if ($resultats){
                         $registre=$resultats->fetch_assoc();
                         echo "<tr>";
                         while($registre){
-                            echo "<td>".$registre["nom"]."</td><td> ".$registre["cognom"]."</td><td> "
-                            .$registre["email"]."</td><td> ".$registre["passw"]."</td><td> "
-                            .$registre["telefon"]."</td><td> ".$registre["poblacio"]."</td>";
+                            echo "<td>".$registre["nom"]."</td>
+                                  <td> ".$registre["venta"]."</td>
+                                  <td> ".$registre["preuventa"]."</td>
+                                  <td> ".$registre["preutotal"]."</td>
+                                  <td> ".$registre["usuari"]."</td>
+                                  <td> ".$registre["dia"]."</td>
+                                  <td> ".$registre["hora"]."</td>";
                             $registre=$resultats->fetch_assoc();
                             echo "</tr>";
                         }
@@ -111,7 +119,7 @@
 
     <!-- footer -->
     <div class="footer bg-light" style="margin-bottom:0">
-        <p>Taula Usuaris</p>
+        <p>Taula Ventes</p>
     </div>
     <!-- /footer -->
 </body>
