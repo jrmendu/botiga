@@ -87,7 +87,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputnom">Nom</label>
-                            <input type="text" name="nom" class="form-control" id="inputnom">
+                            <input type="text" name="nom" class="form-control" id="inputnom" autofocus>
                         </div>
                     </div>
                     <div class="form-row">

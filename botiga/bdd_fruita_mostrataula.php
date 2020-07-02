@@ -90,12 +90,30 @@
                     if ($resultats){
                         $registre=$resultats->fetch_assoc();
                         echo "<tbody>";
-                        echo "<tr>";
                         while($registre){
-                            echo "<td>".$registre["nom"]."</td><td> ".$registre["origen"]." </td><td>".$registre["stock"]." kgs</td><td> 
-                             ".$registre["preu"]." €/kg</td><td> ".$registre["preudte"]." €/kg</td>";
-                            $registre=$resultats->fetch_assoc();
-                            echo "</tr>";
+                            if($registre["stock"]>15){
+                                echo "<tr>";
+                                echo "<td class='danger'>".$registre["nom"]."</td><td> ".$registre["origen"]." 
+                                </td><td>".$registre["stock"]." kgs</td><td>".$registre["preu"]." €/kg</td><td>"
+                                .$registre["preudte"]." €/kg</td>";
+                                $registre=$resultats->fetch_assoc();
+                                echo "</tr>";
+                            } elseif($registre["stock"]<0){
+                                $registre["stock"]=0;
+                                echo "<tr class='table-danger'>";
+                                echo "<td class='danger'>".$registre["nom"]."</td><td> ".$registre["origen"]." 
+                                </td><td>".$registre["stock"]." kgs</td><td>".$registre["preu"]." €/kg</td><td>"
+                                .$registre["preudte"]." €/kg</td>";
+                                $registre=$resultats->fetch_assoc();
+                                echo "</tr>";
+                            }else {
+                                echo "<tr class='table-danger'>";
+                                echo "<td class='danger'>".$registre["nom"]."</td><td> ".$registre["origen"]." 
+                                </td><td>".$registre["stock"]." kgs</td><td>".$registre["preu"]." €/kg</td><td>"
+                                .$registre["preudte"]." €/kg</td>";
+                                $registre=$resultats->fetch_assoc();
+                                echo "</tr>";
+                            }
                         }   
                     } else { 
                         echo "no hay registros para mostrar <br>";
