@@ -106,7 +106,7 @@ if($m==1){
             unset($_SESSION['cistella']);
             header('location:main.php?m=4');
         } else {
-            header('location:main.php?m=5');
+            header('location:main.php?m=6');
         }                          
     }
 }

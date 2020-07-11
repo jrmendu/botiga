@@ -107,7 +107,7 @@
                             echo "</tr>";
                         }
                     }else { 
-                        echo "no hay registros para mostrar <br>";
+                        echo "no hi ha ventes aquesta setmana <br>";
                     }
                     echo "</table>";
                 ?>

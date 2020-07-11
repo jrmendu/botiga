@@ -87,9 +87,14 @@
                             <p><strong>Comanda feta. </strong> <br> Moltes Gràcies <?=$_SESSION["username"]?> !!</p>
                         </div> <?php
                     break;
-                    case 45:?>
+                    case 5:?>
                         <div class="alert alert-light" role="alert">
                             <p><strong>NO s'ha registrat la comanda </strong> <br> Torna a provar.</p>
+                        </div> <?php
+                    break;
+                    case 6:?>
+                        <div class="alert alert-light" role="alert">
+                            <p><strong>Les linies vermelles no seran servides </strong> <br> Perdona les molèsties</p>
                         </div> <?php
                     break;
                 }

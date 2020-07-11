@@ -98,15 +98,7 @@
                                 .$registre["preudte"]." €/kg</td>";
                                 $registre=$resultats->fetch_assoc();
                                 echo "</tr>";
-                            } elseif($registre["stock"]<0){
-                                $registre["stock"]=0;
-                                echo "<tr class='table-danger'>";
-                                echo "<td class='danger'>".$registre["nom"]."</td><td> ".$registre["origen"]." 
-                                </td><td>".$registre["stock"]." kgs</td><td>".$registre["preu"]." €/kg</td><td>"
-                                .$registre["preudte"]." €/kg</td>";
-                                $registre=$resultats->fetch_assoc();
-                                echo "</tr>";
-                            }else {
+                            } else {
                                 echo "<tr class='table-danger'>";
                                 echo "<td class='danger'>".$registre["nom"]."</td><td> ".$registre["origen"]." 
                                 </td><td>".$registre["stock"]." kgs</td><td>".$registre["preu"]." €/kg</td><td>"

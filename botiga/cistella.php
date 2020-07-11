@@ -82,11 +82,35 @@
             <?php
               $num=0;
               $total=0;
+              // Obrim conexio bdd i comprovem que hi hagi estoc 
+              $conector= new mysqli('localhost','root','','botiga');
+              if($conector->connect_error){
+                  echo "error al conectar la base de dades";
+              }
+
               if (isset($_SESSION['cistella'])){
                 foreach($_SESSION['cistella'] as $key => $producto){
+                  $nom = $producto['producto'];
+                  $sql="SELECT * FROM `productes` WHERE `nom` = '$nom'";
+                  $registre=$conector->query($sql);
+                  $comprova = $registre->fetch_assoc();
+                  if($comprova['stock']<=$producto['quantitat']){ 
+                    $producto['quantitat']=0;
+                    $num++;
+            ?>
+                    <tr class="text-danger">
+                      <td><?=$num?></th>
+                      <td><?=$producto['producto']?></td>
+                      <td><?=$producto['precio']." €/kg"?></td>
+                      <td> <?=$producto['quantitat'] ?> </td>
+                      <td> No tenim producte per servir</td>
+                      <td><?=$producto['precio']*$producto['quantitat']." €"?> </td>
+                    </tr>
+            <?php
+                  } else {
                   $num++;
                   $total=$total+$producto['precio']*$producto['quantitat'];
-                ?>
+            ?>
                   <tr>
                     <td><?=$num?></th>
                     <td><?=$producto['producto']?></td>
@@ -94,11 +118,15 @@
                     <td> <?=$producto['quantitat']?> </td>
                     <td><a href="borrar.php?key=<?=$key?>" class="btn btn-light">borrar</button></td>
                     <td><?=$producto['precio']*$producto['quantitat']." €"?> </td>
-                  </tr>
-                  
+                  </tr>   
               <?php
+                  } 
+                  if($producto['quantitat']==0){
+                    unset($_SESSION['cistella'][$key]);
+                  }
+                    
                 } 
-              } 
+              }
               ?>
                 <tr>
                   <td></th>
